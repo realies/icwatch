@@ -4,8 +4,8 @@ SERVER=$1 # such as http://source.target:8000/
 TARGET=$2 # such as icecast://source:client@transcode.target:8000/
 
 function quitscreens {
-	screen -S icw-transcode -X quit
-	screen -S icw-dump -X quit
+	#screen -S icw-transcode -X quit
+	#screen -S icw-dump -X quit
 }
 trap quitscreens EXIT
 
@@ -29,9 +29,9 @@ do
 	        # event title end
 	        MOUNTPOINT=${SOURCE##*/}
 	        echo "[$TIMESTAMP] Mount point detected at $SOURCE, starting screen sessions..."
-	        screen -dmS icw-transcode ./transcode.sh "$SOURCE" $(echo "$TARGET/${MOUNTPOINT%.*}" | sed -E "s/([^:])(\/{2,})/\1\//")
-	        screen -dmS icw-dump curl -o "recordings/$TIMESTAMP $MOUNTPOINT" "$SOURCE"
-	        screen -dms icw-irc ./topic.sh "$EVENT_TITLE ~ LIVE NOW ~ $SOURCE"
+	        #screen -dmS icw-transcode ./transcode.sh "$SOURCE" $(echo "$TARGET/${MOUNTPOINT%.*}" | sed -E "s/([^:])(\/{2,})/\1\//")
+	        #screen -dmS icw-dump curl -o "recordings/$TIMESTAMP $MOUNTPOINT" "$SOURCE"
+	        #screen -dms icw-irc ./topic.sh "$EVENT_TITLE ~ LIVE NOW ~ $SOURCE"
 	    else
 	        echo "[$TIMESTAMP] Matching screen sessions are running, sleeping..."
 	    fi
